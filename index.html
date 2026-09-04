@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Information & Document Submission</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+
+  <!-- All styling lives in style.css (premium theme) -->
+</head>
+<body>
+  <main class="app">
+
+    <!-- ============================ STEP 1 ============================ -->
+    <section id="step1" class="step" aria-labelledby="beforeStartTitle">
+      <div class="landing">
+        <header class="landing-hero">
+          <p class="hero-eyebrow">AMC Commercial Cleaning 6161</p>
+          <h1 id="beforeStartTitle" class="hero-title">Before you start your registration</h1>
+          <p class="hero-sub">Get these ready first — it'll take about 15 minutes if you have everything on hand. Scroll down for help getting your Police Check and filling in your Tax form.</p>
+        </header>
+
+        <!-- Section A — Documents checklist -->
+        <section class="landing-card">
+          <div class="card-head">
+            <span class="step-badge">1</span>
+            <h2 class="card-title">Documents you'll need to upload</h2>
+          </div>
+          <ul class="doc-list">
+            <li>
+              <span class="doc-main">Passport or Australian Driver's Licence</span>
+              <span class="req">— required</span>
+            </li>
+            <li>
+              <span class="doc-main">National Police Check — must be a <strong>Nationally Coordinated Criminal History Check (NCCHC)</strong>, not any other type</span>
+              <span class="req">— required</span>
+            </li>
+            <li>
+              <span class="doc-main">Visa Grant Notice or VEVO check result <span class="doc-note">(if you're not an Australian/NZ citizen or permanent resident)</span></span>
+              <span class="req">— required</span>
+            </li>
+            <li>
+              <span class="doc-main">A recent photo of yourself (selfie or portrait, face clearly visible)</span>
+              <span class="req">— required</span>
+            </li>
+            <li>
+              <span class="doc-main">One more ID document — insurance card, utility bill, bank statement, or student ID</span>
+              <span class="req">— required</span>
+            </li>
+            <li>
+              <span class="doc-main">Completed &amp; signed Tax File Number (TFN) Declaration form</span>
+              <span class="req">— required</span>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Section B — Getting the Police Check (NCCHC) -->
+        <section class="landing-card">
+          <div class="card-head">
+            <span class="step-badge">2</span>
+            <h2 class="card-title">Don't have your Police Check yet?</h2>
+          </div>
+          <p class="card-text">We can only accept a <strong>Nationally Coordinated Criminal History Check (NCCHC)</strong> — the same check used for Working with Children sites. A standard AFP check is not accepted.</p>
+          <a class="resource-link" href="https://apps.det.wa.edu.au/crispa/apply" target="_blank" rel="noopener noreferrer">
+            <span class="resource-title">Apply for your NCCHC online</span>
+            <span class="resource-sub">apps.det.wa.edu.au/crispa/apply — WA Dept of Education Screening Unit</span>
+          </a>
+          <a class="resource-link" href="https://www.youtube.com/watch?v=t1PXlHg27Rg" target="_blank" rel="noopener noreferrer">
+            <span class="resource-title">▶ Video: how to apply for a National Police Check</span>
+            <span class="resource-sub">General step-by-step walkthrough</span>
+          </a>
+          <p class="note note-warning">Fee is $46 — AMC will reimburse you once you receive your certificate. Applying can take 1–2 weeks, so start this as early as possible. Need help? Call the Screening Unit on <strong>9264 4477</strong>.</p>
+        </section>
+
+        <!-- Section C — Filling in the TFN Declaration -->
+        <section class="landing-card">
+          <div class="card-head">
+            <span class="step-badge">3</span>
+            <h2 class="card-title">Filling in your Tax File Number form</h2>
+          </div>
+          <p class="card-text">You'll download this form during registration and upload it once it's signed.</p>
+          <a class="resource-link" href="https://www.ato.gov.au/forms-and-instructions/tfn-declaration" target="_blank" rel="noopener noreferrer">
+            <span class="resource-title">Official ATO guide to the TFN Declaration</span>
+            <span class="resource-sub">ato.gov.au — instructions for every field</span>
+          </a>
+          <a class="resource-link" href="https://www.youtube.com/watch?v=BgD3eveAuzw" target="_blank" rel="noopener noreferrer">
+            <span class="resource-title">▶ Video: how to complete the TFN Declaration</span>
+            <span class="resource-sub">Short walkthrough of the form</span>
+          </a>
+        </section>
+
+        <!-- Section D — Call to action -->
+        <section class="landing-card">
+          <div class="card-head">
+            <span class="step-badge">4</span>
+            <h2 class="card-title">Ready?</h2>
+          </div>
+          <p class="card-text">Once you have everything above, start your registration below.</p>
+          <button type="button" id="startRegistrationBtn" class="start-btn">Start registration</button>
+        </section>
+
+        <p class="landing-privacy">
+          Your information is collected by AMC Commercial Cleaning 6161 solely for employment onboarding and is handled confidentially.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================ STEP 2 ============================ -->
+    <section id="step2" class="step" hidden tabindex="-1" aria-label="Employee registration form">
+  <div class="form-container">
+    <form id="combinedForm" novalidate>
+      <h2 class="main-title">Employee Information Form</h2>
+      <div class="title-line"></div>
+
+      <div class="section-title">1. Personal Details</div>
+
+      <div class="row-grid grid-2">
+        <div class="field">
+          <label for="surname" class="form-label">Surname</label>
+          <input type="text" id="surname" class="form-control" maxlength="100" required />
+        </div>
+        <div class="field">
+          <label for="givenNames" class="form-label">Given Names</label>
+          <input type="text" id="givenNames" class="form-control" maxlength="150" required />
+        </div>
+      </div>
+
+      <div class="row-grid grid-4">
+        <div class="field">
+          <label for="dateOfBirth" class="form-label">Date of Birth</label>
+          <input type="date" id="dateOfBirth" class="form-control" required />
+        </div>
+        <div class="field">
+          <label for="age" class="form-label">Age</label>
+          <input type="number" id="age" class="form-control" min="0" max="120" required />
+        </div>
+        <div class="field">
+          <label for="sex" class="form-label">Sex</label>
+          <input type="text" id="sex" class="form-control" maxlength="20" required />
+        </div>
+        <div class="field">
+          <label for="nationality" class="form-label">Nationality</label>
+          <input type="text" id="nationality" class="form-control" maxlength="60" required />
+        </div>
+      </div>
+
+      <div class="row-grid grid-1">
+        <div class="field field-full">
+          <label for="currentResidentialAddress" class="form-label">Current Residential Address</label>
+          <textarea id="currentResidentialAddress" class="form-control" rows="2" maxlength="250" required></textarea>
+        </div>
+      </div>
+
+      <div class="row-grid grid-2">
+        <div class="field">
+          <label for="postalCode" class="form-label">Postal Code</label>
+          <input type="text" id="postalCode" class="form-control" maxlength="20" required />
+        </div>
+        <div class="field">
+          <label for="suburb" class="form-label">Suburb</label>
+          <input type="text" id="suburb" class="form-control" maxlength="120" required />
+        </div>
+      </div>
+
+      <div class="row-grid grid-2">
+        <div class="field">
+          <label for="contactMobileNo" class="form-label">Contact Mobile No</label>
+          <input type="tel" id="contactMobileNo" class="form-control" maxlength="20" required />
+        </div>
+        <div class="field">
+          <label for="contactHomeNo" class="form-label">Contact Home No</label>
+          <input type="tel" id="contactHomeNo" class="form-control" maxlength="20" required />
+        </div>
+      </div>
+
+      <div class="row-grid grid-1">
+        <div class="field field-full">
+          <label for="contactEmailAddress" class="form-label">Contact Email Address</label>
+          <input type="email" id="contactEmailAddress" class="form-control" maxlength="120" required />
+        </div>
+      </div>
+
+      <div class="row-grid grid-1">
+        <div class="field field-full">
+          <label for="languagesSpoken" class="form-label">Language(s) Spoken</label>
+          <input type="text" id="languagesSpoken" class="form-control" maxlength="150" required />
+        </div>
+      </div>
+
+      <div class="row-grid grid-3">
+        <div class="field">
+          <label for="driversLicenceNo" class="form-label">Drivers Licence No</label>
+          <input type="text" id="driversLicenceNo" class="form-control" maxlength="50" required />
+        </div>
+        <div class="field">
+          <label for="stateOfIssue" class="form-label">State of Issue</label>
+          <input type="text" id="stateOfIssue" class="form-control" maxlength="50" required />
+        </div>
+        <div class="field">
+          <label for="licenceExpiry" class="form-label">Exp</label>
+          <input type="date" id="licenceExpiry" class="form-control" required />
+        </div>
+      </div>
+
+      <div class="section-title">2. TFN Details</div>
+
+      <div class="row-grid grid-1">
+        <div class="field field-full">
+          <label for="taxFileDeclarationNumber" class="form-label">Tax File Declaration Number</label>
+          <input type="text" id="taxFileDeclarationNumber" class="form-control" maxlength="50" required />
+        </div>
+      </div>
+
+      <div class="section-title">3. Bank Account Details</div>
+
+      <div class="row-grid grid-1">
+        <div class="field field-full">
+          <label for="bankAccountName" class="form-label">Name</label>
+          <input type="text" id="bankAccountName" class="form-control" maxlength="150" required />
+        </div>
+      </div>
+
+      <div class="row-grid grid-2">
+        <div class="field">
+          <label for="bankName" class="form-label">Bank</label>
+          <input type="text" id="bankName" class="form-control" maxlength="100" required />
+        </div>
+        <div class="field">
+          <label for="bankBranch" class="form-label">Branch</label>
+          <input type="text" id="bankBranch" class="form-control" maxlength="100" required />
+        </div>
+      </div>
+
+      <div class="row-grid grid-2">
+        <div class="field">
+          <label for="bsbNo" class="form-label">BSB No</label>
+          <input type="text" id="bsbNo" class="form-control" maxlength="20" required />
+        </div>
+        <div class="field">
+          <label for="accountNo" class="form-label">Account No</label>
+          <input type="text" id="accountNo" class="form-control" maxlength="30" required />
+        </div>
+      </div>
+
+      <div class="section-title">4. Superannuation</div>
+
+      <div class="row-grid grid-2">
+        <div class="field">
+          <label for="superFund" class="form-label">Fund</label>
+          <input type="text" id="superFund" class="form-control" maxlength="100" required />
+        </div>
+        <div class="field">
+          <label for="membershipName" class="form-label">Membership Name</label>
+          <input type="text" id="membershipName" class="form-control" maxlength="100" required />
+        </div>
+      </div>
+
+      <div class="row-grid grid-1">
+        <div class="field field-full">
+          <label for="membershipNumber" class="form-label">Membership Number</label>
+          <input type="text" id="membershipNumber" class="form-control" maxlength="50" required />
+        </div>
+      </div>
+
+      <div class="section-title">5. Medical</div>
+
+      <div class="row-grid grid-1">
+        <div class="field field-full">
+          <label for="medicalConditions" class="form-label">Do you have/suffer from any medical conditions?</label>
+          <textarea id="medicalConditions" class="form-control" rows="2" maxlength="300" required></textarea>
+        </div>
+      </div>
+
+      <div class="section-title">6. Next of Kin</div>
+
+      <div class="row-grid grid-2">
+        <div class="field">
+          <label for="nextOfKinName" class="form-label">Name</label>
+          <input type="text" id="nextOfKinName" class="form-control" maxlength="120" required />
+        </div>
+        <div class="field">
+          <label for="nextOfKinPhoneNumbers" class="form-label">Phone Number(s)</label>
+          <input type="text" id="nextOfKinPhoneNumbers" class="form-control" maxlength="100" required />
+        </div>
+      </div>
+
+      <div class="row-grid grid-1">
+        <div class="field field-full">
+          <label for="relationshipToYou" class="form-label">Relation to you</label>
+          <input type="text" id="relationshipToYou" class="form-control" maxlength="100" required />
+        </div>
+      </div>
+
+      <h2 class="sub-title">Working Legally in Australia</h2>
+
+      <div class="section-title">7. Working Rights</div>
+
+      <div class="question-row">
+        <div class="question-layout">
+          <div>
+            <div class="question-text">
+              <span class="question-number">1.</span>
+              Are you a <u>Permanent Resident</u> or <u>Citizen</u> of Australia/New Zealand?
+            </div>
+            <div class="sub-note">
+              If you answered YES to number 1, go directly to number 6. If you answered NO to number 1, proceed to number 2.
+            </div>
+          </div>
+          <div class="yes-no-group">
+            <label><input type="radio" name="residentCitizen" value="YES" required /> YES</label>
+            <label><input type="radio" name="residentCitizen" value="NO" required /> NO</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-row">
+        <div class="question-layout">
+          <div class="question-text">
+            <span class="question-number">2.</span>
+            Are you allowed to work legally in Australia?
+          </div>
+          <div class="yes-no-group">
+            <label><input type="radio" name="allowedToWork" value="YES" required /> YES</label>
+            <label><input type="radio" name="allowedToWork" value="NO" required /> NO</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-row">
+        <div class="question-layout">
+          <div class="question-text">
+            <span class="question-number">3.</span>
+            Are you restricted to the number of hours you are entitled to work in Australia?
+          </div>
+          <div class="yes-no-group">
+            <label><input type="radio" name="restrictedHours" value="YES" required /> YES</label>
+            <label><input type="radio" name="restrictedHours" value="NO" required /> NO</label>
+          </div>
+        </div>
+        <div class="inline-field">
+          <label for="restrictionDetails">If yes, what is the restriction</label>
+          <input type="text" id="restrictionDetails" class="form-control" maxlength="250" required />
+        </div>
+      </div>
+
+      <div class="question-row">
+        <div class="inline-field">
+          <span class="question-number">4.</span>
+          <label for="currentVisa">What Visa are you currently on;</label>
+          <input type="text" id="currentVisa" class="form-control" maxlength="150" required />
+        </div>
+      </div>
+
+      <div class="row-grid grid-2">
+        <div class="field">
+          <label for="visaClass" class="form-label">Visa Class</label>
+          <input type="text" id="visaClass" class="form-control" maxlength="100" required />
+        </div>
+        <div class="field">
+          <label for="visaSubClass" class="form-label">Visa Sub Class</label>
+          <input type="text" id="visaSubClass" class="form-control" maxlength="100" required />
+        </div>
+      </div>
+
+      <div class="question-row">
+        <div class="inline-field">
+          <span class="question-number">5.</span>
+          <label for="visaExpiryDate">On what date is your VISA mentioned above due to expire:</label>
+          <input type="date" id="visaExpiryDate" class="form-control" style="max-width: 220px;" required />
+        </div>
+      </div>
+
+      <div class="section-title">8. Declaration</div>
+
+      <div class="question-row" style="border-bottom: none; padding-bottom: 4px;">
+        <div class="inline-field">
+          <span class="question-number">6.</span>
+          <label for="declarationName">I,</label>
+          <input type="text" id="declarationName" class="form-control" maxlength="150" required />
+        </div>
+        <div class="declaration-text">
+          hereby acknowledge and declare that the above information I have given is true and accurate.
+        </div>
+      </div>
+
+      <div class="row-grid grid-2">
+        <div class="field">
+          <label for="declarationSurname" class="form-label">Surname</label>
+          <input type="text" id="declarationSurname" class="form-control" maxlength="100" required />
+        </div>
+        <div class="field">
+          <label for="declarationGivenNames" class="form-label">Given Name(s)</label>
+          <input type="text" id="declarationGivenNames" class="form-control" maxlength="150" required />
+        </div>
+      </div>
+
+      <div class="row-grid grid-2">
+        <div class="field">
+          <label class="form-label">Signature</label>
+          <div class="signature-wrapper">
+            <canvas id="signaturePad" class="signature-pad"></canvas>
+          </div>
+          <div class="signature-actions">
+            <button type="button" class="clear-btn" id="clearSignatureBtn">Clear Signature</button>
+          </div>
+          <div class="signature-note">Please sign inside the box.</div>
+          <input type="hidden" id="signatureData" />
+        </div>
+
+        <div class="field">
+          <label for="declarationDate" class="form-label">Date</label>
+          <input type="date" id="declarationDate" class="form-control" required />
+        </div>
+      </div>
+
+      <div class="consent-row">
+        <input type="checkbox" id="finalConsent" required />
+        <label for="finalConsent">
+          I confirm that the information provided is correct.
+        </label>
+      </div>
+
+      <div class="section-gap"></div>
+      
+      <div class="title-line"></div>
+      <h2 class="main-title">Required Documents Submission</h2>
+      <div class="small-note">
+        Please upload all required verification documents below before submitting the full application.
+      </div>
+
+      <div class="section-title">9. Tax File Number Declaration Upload</div>
+      <div class="upload-box">
+        <label class="upload-label" for="taxFile">
+          Download the TFN form, fill it, and upload here: *
+        </label>
+        <a
+          href="TFN_declaration_form_N3092.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-download"
+        >
+           📥 Download & Fill Tax Form (Required)
+        </a>
+        <input type="file" id="taxFile" class="file-input" accept=".pdf,application/pdf" />
+        <div class="helper-text">Ensure the NAT 3092 form is correctly filled and signed.</div>
+        <div class="selected-file" id="taxFileInfo"></div>
+      </div>
+
+      <div class="section-title">10. Main Identification</div>
+      <div class="upload-box">
+        <label class="upload-label" for="idProof">Passport or Australian Driving Licence *</label>
+        <input type="file" id="idProof" class="file-input" accept="image/*,.pdf,application/pdf" />
+        <div class="helper-text">Supported formats: PDF, JPG, PNG, WEBP</div>
+        <div class="selected-file" id="idProofInfo"></div>
+      </div>
+
+      <div class="section-title">11. National Police Check</div>
+      <div class="upload-box">
+        <label class="upload-label" for="policeReport">
+          National Police Certificate (Police Report) *
+        </label>
+        <input type="file" id="policeReport" class="file-input" accept="image/*,.pdf,application/pdf" />
+        <div class="helper-text">Please upload a valid National Police Clearance certificate. Supported formats: PDF, JPG, PNG, WEBP</div>
+        <div class="selected-file" id="policeReportInfo"></div>
+      </div>
+
+      <div class="section-title">12. Visa / Work Rights</div>
+      <div class="upload-box">
+        <label class="upload-label" for="visaProof">Visa Grant Notice or VEVO Check Result *</label>
+        <input type="file" id="visaProof" class="file-input" accept="image/*,.pdf,application/pdf" />
+        <div class="helper-text">Supported formats: PDF, JPG, PNG, WEBP</div>
+        <div class="selected-file" id="visaProofInfo"></div>
+      </div>
+
+      <div class="section-title">13. Additional Identification</div>
+      <div class="upload-box">
+        <label class="upload-label" for="additionalDocs">
+          Insurance Card / Utility Bill / Bank Statement / Student ID
+        </label>
+        <input type="file" id="additionalDocs" class="file-input" accept="image/*,.pdf,application/pdf" multiple />
+        <div class="helper-text">You can select multiple files if you have more than one document. Supported formats: PDF, JPG, PNG, WEBP</div>
+        <div class="selected-file" id="additionalDocsInfo"></div>
+      </div>
+
+      <div class="section-title">14. Photo Portrait (Selfie)</div>
+      <div class="upload-box">
+        <label class="upload-label" for="portraitPhoto">Photo Portrait (Selfie) *</label>
+        <input type="file" id="portraitPhoto" class="file-input" accept="image/*,.pdf,application/pdf" />
+        <div class="helper-text">Please upload a recent photo of yourself with your face clearly visible. Supported formats: PDF, JPG, PNG, WEBP</div>
+        <div class="selected-file" id="portraitPhotoInfo"></div>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">Submit Full Application</button>
+
+      <div id="messageBox" tabindex="-1"></div>
+      <div class="loading" id="loader">Submitting your details and uploading documents, please wait...</div>
+    </form>
+  </div>
+    </section>
+
+  </main>
+
+  <script src="config.js"></script>
+  <script>
+    const form = document.getElementById('combinedForm');
+    const messageBox = document.getElementById('messageBox');
+    const loader = document.getElementById('loader');
+    const submitBtn = document.getElementById('submitBtn');
+    const finalConsent = document.getElementById('finalConsent');
+
+    const canvas = document.getElementById('signaturePad');
+    const clearSignatureBtn = document.getElementById('clearSignatureBtn');
+    const signatureDataInput = document.getElementById('signatureData');
+
+    const taxFileInput = document.getElementById('taxFile');
+    const idProofInput = document.getElementById('idProof');
+    const policeReportInput = document.getElementById('policeReport');
+    const visaProofInput = document.getElementById('visaProof');
+    const additionalDocsInput = document.getElementById('additionalDocs');
+    const portraitPhotoInput = document.getElementById('portraitPhoto');
+
+    // Step 1 -> Step 2 single-page flow
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const startRegistrationBtn = document.getElementById('startRegistrationBtn');
+    const prefersReducedMotion =
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const MAX_FILE_SIZE_MB = 10;
+    const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+    const ALLOWED_MIME_TYPES = [
+      'application/pdf',
+      'image/jpeg',
+      'image/jpg',
+      'image/png',
+      'image/webp'
+    ];
+    const ALLOWED_EXTENSIONS = ['pdf', 'jpg', 'jpeg', 'png', 'webp'];
+
+    let signaturePad;
+    let isSubmitting = false;
+
+    function initSignaturePad() {
+      if (signaturePad) return;
+
+      signaturePad = new SignaturePad(canvas, {
+        minWidth: 0.8,
+        maxWidth: 2.2
+      });
+
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+    }
+
+    function resizeCanvas() {
+      const ratio = Math.max(window.devicePixelRatio || 1, 1);
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight;
+
+      canvas.width = width * ratio;
+      canvas.height = height * ratio;
+      canvas.getContext('2d').scale(ratio, ratio);
+
+      if (signaturePad && !isSubmitting) {
+        signaturePad.clear();
+      }
+    }
+
+    function goToForm() {
+      if (!step2.hidden) return; // already on the form screen
+
+      const reveal = () => {
+        if (!step2.hidden) return; // idempotent — animationend + timeout both call this
+        step1.hidden = true;
+        step1.classList.remove('step-leave');
+        step2.hidden = false;
+        // The signature canvas was 0x0 while the form was display:none.
+        // Now that it is visible, size it correctly.
+        resizeCanvas();
+        step2.classList.add('step-enter');
+        step2.addEventListener(
+          'animationend',
+          () => step2.classList.remove('step-enter'),
+          { once: true }
+        );
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        step2.focus({ preventScroll: true });
+      };
+
+      if (prefersReducedMotion) {
+        reveal();
+        return;
+      }
+
+      step1.classList.add('step-leave');
+      let done = false;
+      const once = () => { if (done) return; done = true; reveal(); };
+      step1.addEventListener('animationend', once, { once: true });
+      setTimeout(once, 400); // fallback if animationend doesn't fire
+    }
+
+    function showMessage(type, text) {
+      messageBox.innerHTML = `<div class="alert alert-${type}" role="alert">${text}</div>`;
+      requestAnimationFrame(() => {
+        messageBox.focus({ preventScroll: false });
+        messageBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
+
+    function clearMessage() {
+      messageBox.innerHTML = '';
+    }
+
+    function getRadioValue(name) {
+      const selected = document.querySelector(`input[name="${name}"]:checked`);
+      return selected ? selected.value : '';
+    }
+
+    function getExtension(fileName) {
+      const parts = String(fileName || '').toLowerCase().split('.');
+      return parts.length > 1 ? parts.pop() : '';
+    }
+
+    function formatBytes(bytes) {
+      if (!bytes && bytes !== 0) return '';
+      if (bytes < 1024) return `${bytes} B`;
+      if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+      return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+    }
+
+    function escapeHtml(value) {
+      return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function updateSingleFileInfo(input, infoId) {
+      const infoBox = document.getElementById(infoId);
+      const file = input.files && input.files[0];
+
+      if (!file) {
+        infoBox.innerHTML = '';
+        return;
+      }
+
+      infoBox.innerHTML = `<strong>Selected:</strong> ${escapeHtml(file.name)} (${formatBytes(file.size)})`;
+    }
+
+    function updateMultiFileInfo(input, infoId) {
+      const infoBox = document.getElementById(infoId);
+      const files = Array.from(input.files || []);
+
+      if (!files.length) {
+        infoBox.innerHTML = '';
+        return;
+      }
+
+      const lines = files.map(file => `${escapeHtml(file.name)} (${formatBytes(file.size)})`);
+      infoBox.innerHTML = `<strong>${files.length} file(s) selected:</strong><br>${lines.join('<br>')}`;
+    }
+
+    function isAllowedFile(file) {
+      const ext = getExtension(file.name);
+      const mimeOk = !file.type || ALLOWED_MIME_TYPES.includes(file.type.toLowerCase());
+      const extOk = ALLOWED_EXTENSIONS.includes(ext);
+      return mimeOk || extOk;
+    }
+
+    function validateRequiredFiles() {
+      const required = [
+        { input: taxFileInput, label: 'Tax File Number Declaration Upload' },
+        { input: idProofInput, label: 'Main Identification' },
+        { input: policeReportInput, label: 'National Police Check' },
+        { input: visaProofInput, label: 'Visa / Work Rights' },
+        { input: portraitPhotoInput, label: 'Photo Portrait (Selfie)' }
+      ];
+
+      const missing = required.filter(item => !(item.input.files && item.input.files[0]));
+      if (missing.length) {
+        throw new Error(
+          'Please upload all required documents: ' +
+          missing.map(item => item.label).join(', ') +
+          '.'
+        );
+      }
+    }
+
+    function validateFileSet() {
+      const allFiles = [
+        ...(taxFileInput.files || []),
+        ...(idProofInput.files || []),
+        ...(policeReportInput.files || []),
+        ...(visaProofInput.files || []),
+        ...(portraitPhotoInput.files || []),
+        ...(additionalDocsInput.files || [])
+      ];
+
+      for (const file of allFiles) {
+        if (!isAllowedFile(file)) {
+          throw new Error(
+            `Unsupported file type detected: ${file.name}. Please upload PDF, JPG, JPEG, PNG, or WEBP files only.`
+          );
+        }
+
+        if (file.size > MAX_FILE_SIZE_BYTES) {
+          throw new Error(
+            `${file.name} is too large. Maximum allowed size is ${MAX_FILE_SIZE_MB} MB per file.`
+          );
+        }
+      }
+    }
+
+    function setSubmittingState(submitting) {
+      isSubmitting = submitting;
+      submitBtn.disabled = submitting;
+      loader.style.display = submitting ? 'block' : 'none';
+      submitBtn.textContent = submitting ? 'Submitting...' : 'Submit Full Application';
+    }
+
+    function toBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = String(reader.result || '');
+          const commaIndex = result.indexOf(',');
+          resolve(commaIndex >= 0 ? result.slice(commaIndex + 1) : result);
+        };
+        reader.onerror = () => reject(new Error(`Failed to read file: ${file.name}`));
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function buildEmployeePayload() {
+      return {
+        form_type: 'employee_information',
+        surname: document.getElementById('surname').value.trim(),
+        given_names: document.getElementById('givenNames').value.trim(),
+        date_of_birth: document.getElementById('dateOfBirth').value,
+        age: document.getElementById('age').value.trim(),
+        sex: document.getElementById('sex').value.trim(),
+        nationality: document.getElementById('nationality').value.trim(),
+        current_residential_address: document.getElementById('currentResidentialAddress').value.trim(),
+        postal_code: document.getElementById('postalCode').value.trim(),
+        suburb: document.getElementById('suburb').value.trim(),
+        contact_mobile_no: document.getElementById('contactMobileNo').value.trim(),
+        contact_home_no: document.getElementById('contactHomeNo').value.trim(),
+        contact_email_address: document.getElementById('contactEmailAddress').value.trim(),
+        languages_spoken: document.getElementById('languagesSpoken').value.trim(),
+        drivers_licence_no: document.getElementById('driversLicenceNo').value.trim(),
+        state_of_issue: document.getElementById('stateOfIssue').value.trim(),
+        licence_expiry: document.getElementById('licenceExpiry').value,
+        tax_file_declaration_number: document.getElementById('taxFileDeclarationNumber').value.trim(),
+        bank_account_name: document.getElementById('bankAccountName').value.trim(),
+        bank_name: document.getElementById('bankName').value.trim(),
+        bank_branch: document.getElementById('bankBranch').value.trim(),
+        bsb_no: document.getElementById('bsbNo').value.trim(),
+        account_no: document.getElementById('accountNo').value.trim(),
+        super_fund: document.getElementById('superFund').value.trim(),
+        membership_name: document.getElementById('membershipName').value.trim(),
+        membership_number: document.getElementById('membershipNumber').value.trim(),
+        medical_conditions: document.getElementById('medicalConditions').value.trim(),
+        next_of_kin_name: document.getElementById('nextOfKinName').value.trim(),
+        next_of_kin_phone_numbers: document.getElementById('nextOfKinPhoneNumbers').value.trim(),
+        relationship_to_you: document.getElementById('relationshipToYou').value.trim(),
+        permanent_resident_or_citizen: getRadioValue('residentCitizen'),
+        allowed_to_work_legally: getRadioValue('allowedToWork'),
+        restricted_work_hours: getRadioValue('restrictedHours'),
+        restriction_details: document.getElementById('restrictionDetails').value.trim(),
+        current_visa: document.getElementById('currentVisa').value.trim(),
+        visa_class: document.getElementById('visaClass').value.trim(),
+        visa_sub_class: document.getElementById('visaSubClass').value.trim(),
+        visa_expiry_date: document.getElementById('visaExpiryDate').value,
+        declaration_name: document.getElementById('declarationName').value.trim(),
+        declaration_surname: document.getElementById('declarationSurname').value.trim(),
+        declaration_given_names: document.getElementById('declarationGivenNames').value.trim(),
+        declaration_date: document.getElementById('declarationDate').value,
+        signature: signatureDataInput.value,
+        submitted_at: new Date().toISOString()
+      };
+    }
+
+    async function buildVerificationFields() {
+      const taxFile = taxFileInput.files[0];
+      const idFile = idProofInput.files[0];
+      const policeFile = policeReportInput.files[0];
+      const visaFile = visaProofInput.files[0];
+      const portraitFile = portraitPhotoInput.files[0];
+      const extraFiles = Array.from(additionalDocsInput.files || []);
+
+      const verificationFields = {
+        taxFileData: await toBase64(taxFile),
+        taxFileName: taxFile.name,
+        idProofData: await toBase64(idFile),
+        idProofName: idFile.name,
+        policeReportData: await toBase64(policeFile),
+        policeReportName: policeFile.name,
+        visaProofData: await toBase64(visaFile),
+        visaProofName: visaFile.name,
+        portraitPhotoData: await toBase64(portraitFile),
+        portraitPhotoName: portraitFile.name,
+        additionalFiles: []
+      };
+
+      for (const file of extraFiles) {
+        verificationFields.additionalFiles.push({
+          data: await toBase64(file),
+          name: file.name
+        });
+      }
+
+      return verificationFields;
+    }
+
+    async function parseResponse(response) {
+      const rawText = await response.text();
+      let result = {};
+
+      if (rawText) {
+        try {
+          result = JSON.parse(rawText);
+        } catch {
+          result = { message: rawText };
+        }
+      }
+
+      return { rawText, result };
+    }
+
+    initSignaturePad();
+
+    clearSignatureBtn.addEventListener('click', () => {
+      if (isSubmitting) return;
+      if (signaturePad) {
+        signaturePad.clear();
+        signatureDataInput.value = '';
+      }
+    });
+
+    taxFileInput.addEventListener('change', () => updateSingleFileInfo(taxFileInput, 'taxFileInfo'));
+    idProofInput.addEventListener('change', () => updateSingleFileInfo(idProofInput, 'idProofInfo'));
+    policeReportInput.addEventListener('change', () => updateSingleFileInfo(policeReportInput, 'policeReportInfo'));
+    visaProofInput.addEventListener('change', () => updateSingleFileInfo(visaProofInput, 'visaProofInfo'));
+    portraitPhotoInput.addEventListener('change', () => updateSingleFileInfo(portraitPhotoInput, 'portraitPhotoInfo'));
+    additionalDocsInput.addEventListener('change', () => updateMultiFileInfo(additionalDocsInput, 'additionalDocsInfo'));
+
+    startRegistrationBtn.addEventListener('click', goToForm);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearMessage();
+
+      if (isSubmitting) return;
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (!finalConsent.checked) {
+        showMessage('warning', 'Please confirm that the information provided is correct.');
+        return;
+      }
+
+      if (!signaturePad || signaturePad.isEmpty()) {
+        showMessage('warning', 'Please provide your signature before submitting the form.');
+        return;
+      }
+
+      if (typeof CONFIG === 'undefined' || !CONFIG || !CONFIG.WEBHOOK_URL) {
+        showMessage('danger', 'Webhook configuration is missing. Please check config.js.');
+        return;
+      }
+
+      try {
+        validateRequiredFiles();
+        validateFileSet();
+
+        signatureDataInput.value = signaturePad.toDataURL('image/png');
+        setSubmittingState(true);
+
+        const employeePayload = buildEmployeePayload();
+        const verificationFields = await buildVerificationFields();
+
+        const finalPayload = {
+          ...employeePayload,
+          ...verificationFields
+        };
+
+        const response = await fetch(CONFIG.WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(finalPayload)
+        });
+
+        const { result } = await parseResponse(response);
+
+        if (!response.ok) {
+          throw new Error(result.message || 'Submission failed.');
+        }
+
+        if (result && typeof result.success !== 'undefined' && result.success !== true) {
+          throw new Error(result.message || 'Submission failed.');
+        }
+
+        showMessage('success', 'Your details and documents have been submitted successfully. Thank you.');
+        form.reset();
+
+        if (signaturePad) {
+          signaturePad.clear();
+        }
+
+        signatureDataInput.value = '';
+        document.getElementById('taxFileInfo').innerHTML = '';
+        document.getElementById('idProofInfo').innerHTML = '';
+        document.getElementById('policeReportInfo').innerHTML = '';
+        document.getElementById('visaProofInfo').innerHTML = '';
+        document.getElementById('portraitPhotoInfo').innerHTML = '';
+        document.getElementById('additionalDocsInfo').innerHTML = '';
+      } catch (error) {
+        showMessage('danger', error.message || 'Submission failed. Please try again.');
+      } finally {
+        setSubmittingState(false);
+      }
+    });
+  </script>
+</body>
+</html>
