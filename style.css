@@ -646,12 +646,13 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
 #step2:focus { outline: none; }
 
 /* ---------------------------- Landing shell ------------------------- */
-.landing { max-width: 720px; margin: 0 auto; }
+.landing { max-width: 1060px; margin: 0 auto; }
 
 .landing-hero {
   position: relative;
-  margin-bottom: 22px;
-  padding: clamp(26px, 4.5vw, 40px);
+  margin-bottom: 20px;
+  /* Asymmetric: trimmer vertical height, comfortable horizontal inset */
+  padding: clamp(20px, 3vw, 30px) clamp(24px, 4vw, 40px);
   color: #fff;
   background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
   border: 1px solid var(--ink);
@@ -667,7 +668,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
   background: linear-gradient(90deg, var(--accent), var(--accent-tint) 55%, #0ea5e9);
 }
 .hero-eyebrow {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   font-size: 12.5px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -675,8 +676,8 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
   color: rgba(255, 255, 255, 0.72);
 }
 .hero-title {
-  margin: 0 0 12px;
-  font-size: clamp(26px, 4.6vw, 34px);
+  margin: 0 0 10px;
+  font-size: clamp(24px, 3.6vw, 30px);
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -684,8 +685,9 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
 }
 .hero-sub {
   margin: 0;
+  max-width: 66ch;      /* keep the intro readable now the banner is full-width */
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.55;
   color: rgba(255, 255, 255, 0.82);
 }
 
@@ -728,6 +730,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
 }
 .card-text {
   margin: 0 0 16px;
+  max-width: 72ch;      /* comfortable measure inside the wider cards */
   font-size: 14.5px;
   line-height: 1.6;
   color: var(--ink-soft);
