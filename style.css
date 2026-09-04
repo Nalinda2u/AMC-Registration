@@ -643,6 +643,7 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
 .step-leave { animation: stepOut .22s ease both; }
 @keyframes stepIn  { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes stepOut { from { opacity: 1; transform: none; }            to { opacity: 0; transform: translateY(-8px); } }
+#step1:focus,
 #step2:focus { outline: none; }
 
 /* ---------------------------- Landing shell ------------------------- */
@@ -872,4 +873,72 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
   .landing-hero { border-radius: 16px; }
   .landing-card { border-radius: 14px; }
   .req { margin-left: 20px; }  /* aligns wrapped tag under the checklist text */
+}
+
+/* -------------------- Step 2 back-navigation bar -------------------- */
+/* Sticky so users can return to the checklist from anywhere in the form.
+   Returning preserves all entered data — it only toggles step visibility. */
+.form-topbar {
+  position: sticky;
+  top: 12px;
+  z-index: 30;
+  max-width: 1060px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  backdrop-filter: saturate(180%) blur(10px);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px -10px rgba(15, 23, 42, 0.30);
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  cursor: pointer;
+  transition: color .15s ease, border-color .15s ease,
+              background-color .15s ease, transform .1s ease;
+}
+.back-btn:hover,
+.back-btn:focus-visible {
+  outline: none;
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.back-btn:active { transform: translateY(1px); }
+.back-btn .arrow {
+  font-size: 15px;
+  line-height: 1;
+  transition: transform .15s ease;
+}
+.back-btn:hover .arrow { transform: translateX(-2px); }
+
+.step-indicator {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-right: 4px;
+}
+
+@media (max-width: 620px) {
+  .form-topbar { top: 8px; padding: 7px 8px; }
+  .back-btn { padding: 8px 12px; }
+  .step-indicator { font-size: 11px; }
 }
