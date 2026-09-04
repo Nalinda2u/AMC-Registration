@@ -942,3 +942,38 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
   .back-btn { padding: 8px 12px; }
   .step-indicator { font-size: 11px; }
 }
+
+/* --------------------- Photo guideline reference -------------------- */
+/* Shown in the Step 1 checklist and in Item 14. Placeholder src
+   (photo-guideline.jpg) — hidden via onerror until the asset is added. */
+.photo-guideline-img {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px -8px rgba(15, 23, 42, 0.25);
+}
+
+/* Inside the upload box: sits between the label and the file input */
+.upload-box .photo-guideline-img {
+  margin: 0 0 14px;
+}
+
+/* Inside the Step 1 checklist row: the wrapper takes a full line (so the image
+   drops below the item text), and the image is capped inside it */
+.doc-list .guide-wrap {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  padding-left: 20px;      /* align under the item text, without overflow */
+  margin: 12px 0 2px;
+}
+.doc-list .photo-guideline-img {
+  max-width: 300px;
+}
+
+@media (max-width: 620px) {
+  .doc-list .photo-guideline-img { max-width: 100%; }
+  .photo-guideline-img { max-width: 100%; }
+}
