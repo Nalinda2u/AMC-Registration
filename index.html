@@ -14,7 +14,7 @@
   <main class="app">
 
     <!-- ============================ STEP 1 ============================ -->
-    <section id="step1" class="step" aria-labelledby="beforeStartTitle">
+    <section id="step1" class="step" tabindex="-1" aria-labelledby="beforeStartTitle">
       <div class="landing">
         <header class="landing-hero">
           <p class="hero-eyebrow">AMC Commercial Cleaning 6161</p>
@@ -109,6 +109,12 @@
 
     <!-- ============================ STEP 2 ============================ -->
     <section id="step2" class="step" hidden tabindex="-1" aria-label="Employee registration form">
+      <div class="form-topbar">
+        <button type="button" id="backToStartBtn" class="back-btn">
+          <span class="arrow" aria-hidden="true">&larr;</span> Before you start
+        </button>
+        <span class="step-indicator">Step 2 of 2</span>
+      </div>
   <div class="form-container">
     <form id="combinedForm" novalidate>
       <h2 class="main-title">Employee Information Form</h2>
@@ -525,6 +531,7 @@
     const step1 = document.getElementById('step1');
     const step2 = document.getElementById('step2');
     const startRegistrationBtn = document.getElementById('startRegistrationBtn');
+    const backToStartBtn = document.getElementById('backToStartBtn');
     const prefersReducedMotion =
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -555,6 +562,15 @@
     }
 
     function resizeCanvas() {
+      // Skip while the form is off-screen: the canvas has no size then, and
+      // resizing here would blank a signature the user has already drawn.
+      if (step2.hidden || !canvas.offsetWidth || !canvas.offsetHeight) return;
+
+      // Preserve any existing signature across the resize (vector strokes, so
+      // they re-render crisply at the new dimensions).
+      const savedStrokes =
+        (signaturePad && !signaturePad.isEmpty()) ? signaturePad.toData() : null;
+
       const ratio = Math.max(window.devicePixelRatio || 1, 1);
       const width = canvas.offsetWidth;
       const height = canvas.offsetHeight;
@@ -563,8 +579,11 @@
       canvas.height = height * ratio;
       canvas.getContext('2d').scale(ratio, ratio);
 
-      if (signaturePad && !isSubmitting) {
+      if (signaturePad) {
         signaturePad.clear();
+        if (savedStrokes && !isSubmitting) {
+          signaturePad.fromData(savedStrokes);
+        }
       }
     }
 
@@ -598,6 +617,38 @@
       let done = false;
       const once = () => { if (done) return; done = true; reveal(); };
       step1.addEventListener('animationend', once, { once: true });
+      setTimeout(once, 400); // fallback if animationend doesn't fire
+    }
+
+    function goToStart() {
+      if (!step1.hidden) return; // already on the checklist
+
+      // Data preserved: this only toggles visibility. Form values, radio/checkbox
+      // state, selected files, and the signature all stay intact.
+      const reveal = () => {
+        if (!step1.hidden) return; // idempotent
+        step2.hidden = true;
+        step2.classList.remove('step-leave');
+        step1.hidden = false;
+        step1.classList.add('step-enter');
+        step1.addEventListener(
+          'animationend',
+          () => step1.classList.remove('step-enter'),
+          { once: true }
+        );
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        step1.focus({ preventScroll: true });
+      };
+
+      if (prefersReducedMotion) {
+        reveal();
+        return;
+      }
+
+      step2.classList.add('step-leave');
+      let done = false;
+      const once = () => { if (done) return; done = true; reveal(); };
+      step2.addEventListener('animationend', once, { once: true });
       setTimeout(once, 400); // fallback if animationend doesn't fire
     }
 
@@ -849,6 +900,7 @@
     additionalDocsInput.addEventListener('change', () => updateMultiFileInfo(additionalDocsInput, 'additionalDocsInfo'));
 
     startRegistrationBtn.addEventListener('click', goToForm);
+    backToStartBtn.addEventListener('click', goToStart);
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
